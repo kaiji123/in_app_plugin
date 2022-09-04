@@ -72,11 +72,22 @@ class inAppState {
     // }
   }
 
-  void verifyAllPurchases() {}
+  void verifyConsumablePurchases() {}
 
-  void buyProduct(ProductDetails prod) {
+  void verifyNonConsumablePurchases() {}
+
+  void verifyAllPurchases(Function fn) {
+    fn();
+  }
+
+  void buyConsumable(ProductDetails prod) {
     final PurchaseParam purchaseParam = PurchaseParam(productDetails: prod);
     iap.buyConsumable(purchaseParam: purchaseParam, autoConsume: false);
+  }
+
+  void buyNonConsumable(ProductDetails prod) {
+    final PurchaseParam purchaseParam = PurchaseParam(productDetails: prod);
+    iap.buyNonConsumable(purchaseParam: purchaseParam);
   }
 
   void consumePurchase(PurchaseDetails purchase) async {
